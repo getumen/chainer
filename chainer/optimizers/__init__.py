@@ -7,7 +7,7 @@ from chainer.optimizers import rmsprop  # NOQA
 from chainer.optimizers import rmsprop_graves  # NOQA
 from chainer.optimizers import sgd  # NOQA
 from chainer.optimizers import smorms3  # NOQA
-from chainer.optimizers import freerex  # NOQA
+
 
 # import class and function
 from chainer.optimizers.ada_delta import AdaDelta  # NOQA
@@ -19,4 +19,3 @@ from chainer.optimizers.rmsprop import RMSprop  # NOQA
 from chainer.optimizers.rmsprop_graves import RMSpropGraves  # NOQA
 from chainer.optimizers.sgd import SGD  # NOQA
 from chainer.optimizers.smorms3 import SMORMS3  # NOQA
-from chainer.optimizers.freerex import FreeRex  # NOQA
