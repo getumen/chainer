@@ -8,14 +8,14 @@ _default_hyperparam.k = 1.0
 
 
 class FreeRexRule(optimizer.UpdateRule):
-    """Update rule of AdaGrad.
+    """Update rule of FreeREX.
 
     See : http://proceedings.mlr.press/v65/cutkosky17a
 
     Args:
         parent_hyperparam (~chainer.optimizer.Hyperparameter): Hyperparameter
             that provides the default values.
-        k (float): Upper bound of $L_t/L?{t-1}$ where L_t is max Euclidean norm of gradient until current iteration.
+        k (float): Upper bound of $L_t/L_{t-1}$ where L_t is max Euclidean norm of gradient until current iteration.
 
     """
 
@@ -29,9 +29,9 @@ class FreeRexRule(optimizer.UpdateRule):
         xp = cuda.get_array_module(param.data)
         with cuda.get_device_from_array(param.data):
             self.state['cum_grad'] = xp.zeros_like(param.data)
-        self.state['L'] = 0.0
-        self.state['a'] = 0.0
-        self.state['e'] = 0.0
+            self.state['L'] = 0.0
+            self.state['a'] = 0.0
+            self.state['e'] = 0.0
 
     def update_core_cpu(self, param):
         grad = param.grad
@@ -95,12 +95,12 @@ class FreeRexRule(optimizer.UpdateRule):
 
 
 class FreeRex(optimizer.GradientMethod):
-    """AdaGrad optimizer.
+    """FreeREX optimizer.
 
-    See: http://jmlr.org/papers/v12/duchi11a.html
+    See: http://proceedings.mlr.press/v65/cutkosky17a
 
     Args:
-        k (float): Upper bound of $L_t/L?{t-1}$ where L_t is max Euclidean norm of gradient until current iteration.
+        k (float): Upper bound of $L_t/L_{t-1}$ where L_t is max Euclidean norm of gradient until current iteration.
 
     """
 
